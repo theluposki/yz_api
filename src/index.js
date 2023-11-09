@@ -4,7 +4,7 @@ import config from "./config.js";
 import colors from  "@colors/colors";
 import { setupDatabase } from "./database/index.js";
 
-await setupDatabase();
+setupDatabase();
 const server = createServer(app);
 
 server.listen(config.app.PORT, () => {
