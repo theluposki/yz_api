@@ -2,6 +2,7 @@ import { randomUUID } from "node:crypto";
 import { db } from "../../database/index.js";
 import { isEmail, isValidPassword, validAge } from "../../utils/validation.js";
 import { logError } from "../../utils/log.js";
+import { hash } from "../../utils/hashPassword.js"
 
 export const addRepo = async (body) => {
   const id = randomUUID();
@@ -13,6 +14,7 @@ export const addRepo = async (body) => {
   if (isValidPassword(body.senha)) return { error: isValidPassword(senha) };
 
   const birthDate = new Date(data_nascimento).getTime();
+  const hashPassword = hash(senha);
 
   try {
     const userAlreadyExists = await db
@@ -33,7 +35,7 @@ export const addRepo = async (body) => {
       nome,
       imagem,
       email,
-      senha,
+      hashPassword,
       birthDate,
       JSON.stringify(autorizacao)
     );
