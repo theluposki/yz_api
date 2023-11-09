@@ -3,9 +3,9 @@ import { logError } from "../../utils/log.js";
 
 export const getAllRepo = async () => {
   try {
-    const users = await db
-    .prepare("SELECT nome, email, senha, data_nascimento, autorizacao FROM users")
-    .all();
+    const query = db.prepare("SELECT id, nome, email, data_nascimento, autorizacao FROM users")
+
+    const users = query.all();
 
     return users
   } catch (error) {

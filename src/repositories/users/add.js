@@ -48,26 +48,3 @@ export const addRepo = async (body) => {
     return { error: "Unable to register user." };
   }
 };
-
-
-/* JSON
-
-{
-	"nome": "John Doe",
-	"imagem": "sfsdf",
-	"email": "johndoe@mail.com",
-	"senha": "MyPassw0rd#2023",
-	"data_nascimento": "2005-04-12",
-	"autorizacao": ["administrator"]
-}
-
-{
-	"nome": "Jane Doe",
-	"imagem": "sfsdf",
-	"email": "janedoe@mail.com",
-	"senha": "MyPassw0rd#2023",
-	"data_nascimento": "2005-04-12",
-	"autorizacao": ["administrator"]
-}
-
-*/

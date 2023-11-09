@@ -1,0 +1,9 @@
+{
+  "id":"f6e43472-c77d-440d-ba29-6ba0c8f0e302",
+	"nome": "John Doe",
+	"imagem": "sfsdf",
+	"email": "johndoe@mail.com",
+	"senha": "MyPassw0rd#2023",
+	"data_nascimento": "2005-04-12",
+	"autorizacao": ["administrator"]
+}

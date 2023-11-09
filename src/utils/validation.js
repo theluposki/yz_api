@@ -1,10 +1,12 @@
-export const isRequired = (body) => {
-  for (const propriedade in body) {
-    if (!body[propriedade]) {
-      return `${propriedade} is mandatory.`
+export const isRequired = (body, requiredProperties) => {
+  for (const property of requiredProperties) {
+    if (!body.hasOwnProperty(property) || body[property] === null || body[property] === undefined || body[property] === "") {
+      return `${property} is mandatory.`;
     }
   }
-}
+  return null;
+};
+
 
 export const validAge = (birthdate) => {
   const currentDate = new Date().getFullYear();

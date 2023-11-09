@@ -5,8 +5,8 @@ import { isRequired } from "../../utils/validation.js";
 export const add = async (req, res) => {
   const body = req.body;
 
-  if (isRequired(body))
-    return res.status(400).json({ error: isRequired(body) });
+  if (isRequired(body, ["nome", "imagem", "email", "senha", "data_nascimento", "autorizacao"]))
+    return res.status(400).json({ error: isRequired(body, ["nome", "imagem", "email", "senha", "data_nascimento", "autorizacao"]) });
 
   try {
     const result = await addRepo(body);
