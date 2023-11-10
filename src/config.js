@@ -1,6 +1,7 @@
 const app = {
   PORT: Number(process.env.PORT) || 3376,
   NODE_ENV: process.env.NODE_ENV, // # development | production | testing
+  tokenExpiresIn: 8
 }
 
 const cors = {
