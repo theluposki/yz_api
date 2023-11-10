@@ -16,6 +16,12 @@ export const auth = async (req, res) => {
       return
     }
 
+    res.cookie("token", result.token, {
+      httpOnly: true,
+      secure: true,
+      sameSite: "none",
+    });
+
     res.status(200).json(result);
   } catch (error) {
     logError("auth", "error during authentication", error);

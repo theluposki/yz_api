@@ -7,5 +7,5 @@ const version = "/api/v1"
 export const routes = (app) => {
   app.use('/', base);
   app.use(version+'/users', validateToken, users);
-  app.use(version+'/auth', validateToken, auth);
+  app.use(version+'/auth', auth);
 }

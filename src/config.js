@@ -10,7 +10,7 @@ const cors = {
       ? process.env.CLIENT_URL
       : "https://localhost:5173",
   methods: ["OPTIONS", "GET", "POST", "PUT","DELETE"],
-  credentials: false,
+  credentials: true,
 };
 
 const websocket = {
