@@ -29,3 +29,21 @@ export const validateToken = async (req, res, next) => {
       .json({ error: "Authentication failed: token cookie missing" });
   }
 };
+
+/* no cliente
+
+import axios from "axios";
+import config from "./config.js"
+
+export const api = axios.create({
+  baseURL: config.BASE_URL,
+  mode: "no-cors",
+  cache: "no-cache",
+  withCredentials: true,
+  referrerPolicy: "origin",
+  headers: {
+    "Content-Type": "application/json",
+  },
+});
+
+*/
