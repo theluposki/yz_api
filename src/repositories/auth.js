@@ -21,7 +21,7 @@ export const authRepo = async (body) => {
 
     const token = sign(userExists.id);
 
-    return { message: "Autenticado com sucesso!!", token}
+    return { message: "Autenticado com sucesso!", token}
   } catch (error) {
     logError("auth repo", "error when authenticating.", error);
     return { error: "error when authenticating." };

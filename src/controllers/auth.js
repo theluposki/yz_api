@@ -22,7 +22,7 @@ export const auth = async (req, res) => {
       sameSite: "none",
     });
 
-    res.status(200).json(result);
+    res.status(200).json({ message: result.message });
   } catch (error) {
     logError("auth", "error during authentication", error);
   }
