@@ -1,7 +1,5 @@
-[⬅️ retornar para **Documentação**](/docs/indice.md)
-# Conta padrão
-
-Ao realizar a instalação, o sistema inclui automaticamente uma conta de acesso com o nível "**administrator**" por padrão.
+[⬅️ return to **documentation**](/docs/indice.md)
+# Autenticação
 
 > Para se autenticar, basta fazer uma solicitação ``POST`` para a rota. ``/api/v1/auth``
 
@@ -10,8 +8,8 @@ Ao realizar a instalação, o sistema inclui automaticamente uma conta de acesso
 > Envie um ``JSON`` com os seguintes dados.
 ```json
 {
-  "email": "johndoe@mail.com",
-  "senha": "MyPassw0rd#2023"
+  "email": "seu email",
+  "senha": "sua senha"
 }
 ```
 ---
@@ -22,7 +20,7 @@ Requisição com **Curl**
 ```bash
  curl -sS  -X POST \
   -H "Content-Type: application/json" \
-  -d '{"email": "johndoe@mail.com", "senha": "MyPassw0rd#2023"}' \
+  -d '{"email": "", "senha": ""}' \
   http://localhost:3327/api/v1/auth | jq .
 ```
 
@@ -33,7 +31,7 @@ TOKEN=$(curl -sS -X POST \
   -H "Content-Type: application/json" \
   -i \
   --cookie-jar cookies.txt \
-  -d '{"email": "johndoe@mail.com", "senha": "MyPassw0rd#2023"}' \
+  -d '{"email": "seu email", "senha": "sua senha"}' \
   http://localhost:3327/api/v1/auth | awk -F' ' '/token=/ {print $2}' | tr -d '\r\n')
 
 
@@ -61,8 +59,8 @@ Requisição com  **Axios**
 const request = async () => {
   const url = 'http://localhost:3327/api/v1/auth';
   const data = {
-    email: 'johndoe@mail.com',
-    senha: 'MyPassw0rd#2023',
+    email: 'seu email',
+    senha: 'sua senha',
   };
 
   try {
@@ -114,9 +112,3 @@ Caso o usuário ou a senha estejam inválidos, uma resposta será recebida.
 	"error": "Usuário ou Senha invalidos."
 }
 ```
-
-## IMPORTANTE
-
-Após realizar o login, proceda com a criação de uma nova conta, efetuando um post na rota ``/api/v1/users``
-
-Para obter mais detalhes, consulte a página de [criação de conta](/docs/criacao_de_conta.md).
