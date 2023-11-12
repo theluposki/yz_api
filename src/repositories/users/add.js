@@ -41,7 +41,7 @@ export const addRepo = async (body) => {
     );
 
     if (row.changes === 1) {
-      return { message: "Adicionado com sucesso!" };
+      return { message: "Registrado com sucesso!" };
     }
   } catch (error) {
     logError("add repo user", "Unable to register user.", error);

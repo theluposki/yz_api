@@ -31,4 +31,4 @@ pkg install nodejs-lts sqlite clang libsqlite pkg-config python make binutils -y
 
 ## Documentation
 
-[To see the documentation click here ➡️](/docs/index.md)
+[To see the documentation click here ➡️](/docs/indice.md)
