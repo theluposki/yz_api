@@ -1,6 +1,5 @@
-import { logError } from "../../utils/log.js";
+import { logger, validation } from "../../utils/index.js";
 import { updateAuthorization } from "../../repositories/users/index.js";
-import { isRequired } from "../../utils/validation.js";
 
 export const updateAuthorizationC = async (req,res) => {
   const id = req.params.id;
@@ -8,8 +7,8 @@ export const updateAuthorizationC = async (req,res) => {
 
   try {
     
-    if (isRequired({ id, ...body }, ["id","autorizacao"]))
-    return res.status(400).json({ error: isRequired({ id, ...body }, ["id","autorizacao"]) });
+    if (validation.isRequired({ id, ...body }, ["id","autorizacao"]))
+    return res.status(400).json({ error: validation.isRequired({ id, ...body }, ["id","autorizacao"]) });
   
     const result = await updateAuthorization(id, body);
 
@@ -20,6 +19,6 @@ export const updateAuthorizationC = async (req,res) => {
 
     res.status(201).json(result);
   } catch (error) {
-    logError("updateAuthorization users", "error when update authorization user", error);
+    logger.err("updateAuthorization users", "error when update authorization user", error);
   }
 } 

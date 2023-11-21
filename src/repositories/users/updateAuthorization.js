@@ -1,5 +1,5 @@
 import { db } from "../../database/index.js";
-import { logError } from "../../utils/log.js";
+import { logger } from "../../utils/index.js";
 
 export const updateAuthorization = async (id, body) => {
 
@@ -21,7 +21,7 @@ export const updateAuthorization = async (id, body) => {
       return { message: "Autorização atualizada com sucesso!" };
     }
   } catch (error) {
-    logError("updateAuthorization repo user", "Unable to updateAuthorization user.", error);
+    logger.err("updateAuthorization repo user", "Unable to updateAuthorization user.", error);
     return { error: "Unable to updateAuthorization user." };
   }
 }

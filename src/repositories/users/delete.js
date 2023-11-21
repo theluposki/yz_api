@@ -1,5 +1,5 @@
 import { db } from "../../database/index.js";
-import { logError } from "../../utils/log.js";
+import { logger } from "../../utils/index.js";
 
 export const deleteRepo = async (id) => {
   try {
@@ -17,7 +17,7 @@ export const deleteRepo = async (id) => {
       return { message: "Deletado com sucesso!" };
     }
   } catch (error) {
-    logError("delete repo user", "Unable to delete user.", error);
+    logger.err("delete repo user", "Unable to delete user.", error);
     return { error: "Unable to delete user." };
   }
 }

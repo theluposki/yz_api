@@ -1,5 +1,5 @@
 import { db } from "../../database/index.js";
-import { logError } from "../../utils/log.js";
+import { logger } from "../../utils/index.js";
 
 export const getOneByIDRepo = async (id) => {
   try {
@@ -9,7 +9,7 @@ export const getOneByIDRepo = async (id) => {
 
     return userExists
   } catch (error) {
-    logError("getOneByID repo user", "Unable to search for this user.", error);
+    logger.err("getOneByID repo user", "Unable to search for this user.", error);
     return { error: "Unable to search for this user." };
   }
 }

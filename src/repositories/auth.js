@@ -1,7 +1,5 @@
 import { db } from "../database/index.js";
-import { logError } from "../utils/log.js";
-import { compare } from "../utils/hashPassword.js";
-import { sign } from "../utils/jwt.js";
+import { logger, hashPassword, jwt } from "../utils/index.js";
 
 export const authRepo = async (body) => {
   const { email, senha } = body;
@@ -15,15 +13,15 @@ export const authRepo = async (body) => {
       return { error: "Usuário ou Senha invalidos." };
     }
 
-    if(!compare(senha, userExists.senha)) {
+    if(!hashPassword.compare(senha, userExists.senha)) {
       return { error: "Usuário ou Senha invalidos. senha" };
     }
 
-    const token = sign(userExists.id);
+    const token = jwt.sign(userExists.id);
 
     return { message: "Autenticado com sucesso!", token}
   } catch (error) {
-    logError("auth repo", "error when authenticating.", error);
+    logger.err("auth repo", "error when authenticating.", error);
     return { error: "error when authenticating." };
   }
 }

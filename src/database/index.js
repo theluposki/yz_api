@@ -1,5 +1,5 @@
 import Database from "better-sqlite3";
-import { log, logError } from "../utils/log.js";
+import { logger } from "../utils/index.js";
 import { readFileSync } from "node:fs";
 
 const options = { promise: 'async'/*verbose: console.log*/ };
@@ -13,10 +13,9 @@ export function setupDatabase() {
   try {
     const sqlSchema = readFileSync("tables.sql", "utf-8");
     db.exec(sqlSchema);
-    log("DATABASE 🗃️ ", "Table definitions performed successfully.");
+    logger.log("DATABASE 🗃️ ", "Table definitions performed successfully.");
   } catch (error) {
-    console.log(error);
-    logError("DATABASE 🗃️ ", "Error executing table definitions", error);
+    logger.err("DATABASE 🗃️ ", "Error executing table definitions", error);
   }
 }
 

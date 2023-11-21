@@ -1,20 +1,19 @@
 import { randomUUID } from "node:crypto";
 import { db } from "../../database/index.js";
-import { isEmail, isValidPassword, validAge } from "../../utils/validation.js";
-import { logError } from "../../utils/log.js";
-import { hash } from "../../utils/hashPassword.js"
+import { logger, hashPassword, validation } from "../../utils/index.js";
+
 
 export const addRepo = async (body) => {
   const id = randomUUID();
 
   const { nome, imagem, email, senha, data_nascimento, autorizacao } = body;
 
-  if (validAge(data_nascimento)) return { error: validAge(data_nascimento) };
-  if (isEmail(body.email)) return { error: isEmail(email) };
-  if (isValidPassword(body.senha)) return { error: isValidPassword(senha) };
+  if (validation.isValidAge(data_nascimento)) return { error: validation.isValidAge(data_nascimento) };
+  if (validation.isEmail(body.email)) return { error: validation.isEmail(email) };
+  if (validation.isValidPassword(body.senha)) return { error: validation.isValidPassword(senha) };
 
   const birthDate = new Date(data_nascimento).getTime();
-  const hashPassword = hash(senha);
+  const hashPasswordText = hashPassword.hash(senha);
 
   try {
     const userAlreadyExists = await db
@@ -35,7 +34,7 @@ export const addRepo = async (body) => {
       nome,
       imagem,
       email,
-      hashPassword,
+      hashPasswordText,
       birthDate,
       JSON.stringify(autorizacao)
     );
@@ -44,7 +43,7 @@ export const addRepo = async (body) => {
       return { message: "Registrado com sucesso!" };
     }
   } catch (error) {
-    logError("add repo user", "Unable to register user.", error);
+    logger.err("add repo user", "Unable to register user.", error);
     return { error: "Unable to register user." };
   }
 };

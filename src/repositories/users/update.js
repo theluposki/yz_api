@@ -1,5 +1,5 @@
 import { db } from "../../database/index.js";
-import { logError } from "../../utils/log.js";
+import { logger } from "../../utils/index.js";
 
 export const updateRepo = async (id, body) => {
 
@@ -21,7 +21,7 @@ export const updateRepo = async (id, body) => {
       return { message: "Atualizado com sucesso!" };
     }
   } catch (error) {
-    logError("update repo user", "Unable to update user.", error);
+    logger.err("update repo user", "Unable to update user.", error);
     return { error: "Unable to update user." };
   }
 }

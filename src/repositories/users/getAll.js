@@ -1,5 +1,5 @@
 import { db } from "../../database/index.js";
-import { logError } from "../../utils/log.js";
+import { logger } from "../../utils/index.js";
 
 export const getAllRepo = async () => {
   try {
@@ -9,7 +9,7 @@ export const getAllRepo = async () => {
 
     return users
   } catch (error) {
-    logError("getAll repo user", "Unable to search for users.", error);
+    logger.err("getAll repo user", "Unable to search for users.", error);
     return { error: "Unable to search for users." };
   }
 }

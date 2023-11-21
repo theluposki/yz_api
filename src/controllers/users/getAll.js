@@ -1,4 +1,4 @@
-import { logError } from "../../utils/log.js";
+import { logger } from "../../utils/index.js";
 import { getAllRepo } from "../../repositories/users/index.js";
 
 export const getAll = async (req,res) => {
@@ -7,6 +7,6 @@ export const getAll = async (req,res) => {
 
     res.status(200).json(result);
   } catch (error) {
-    logError("get all users", "error when searching for users", error);
+    logger.err("get all users", "error when searching for users", error);
   }
 } 

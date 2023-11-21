@@ -1,8 +1,8 @@
 import { writeFileSync } from 'node:fs';
 import { generateKeyPairSync } from 'node:crypto';
-import { log } from './log.js';
+import { log } from '../logger.js';
 
-export const generateKey = () => {
+export const generateKeyPEMFile = () => {
 
   const { privateKey, publicKey } = generateKeyPairSync('rsa', {
     modulusLength: 2048,

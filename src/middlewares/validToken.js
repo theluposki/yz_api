@@ -1,12 +1,11 @@
-import { dateExp } from "../utils/dateExp.js";
-import { verify } from "../utils/jwt.js";
+import { datatime, jwt } from "../utils/index.js";
 
 export const validateToken = async (req, res, next) => {
   const token = req.cookies.token;
 
   if (token) {
     try {
-      const decoded = verify(token);
+      const decoded = jwt.verify(token);
 
       const now = Date.now().valueOf() / 1000;
       if (decoded.exp < now) {
@@ -16,7 +15,7 @@ export const validateToken = async (req, res, next) => {
 
       req.user = {
         id: decoded.id,
-        exp: dateExp(decoded.exp),
+        exp: datatime.tokenDateExp(decoded.exp),
       };
 
       next();
