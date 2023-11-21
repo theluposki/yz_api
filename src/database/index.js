@@ -1,13 +1,14 @@
-import Database from "better-sqlite3";
+import sqlite3 from 'sqlite3';
+import { open } from 'sqlite';
 import { logger } from "../utils/index.js";
 import { readFileSync } from "node:fs";
 
-const options = { promise: 'async'/*verbose: console.log*/ };
+export const databasePromise = open({
+  filename: 'yz.db',
+  driver: sqlite3.Database
+});
 
-export const db = new Database("yz.db", options);
-
-db.pragma("foreign_keys = ON");
-db.pragma('encoding = "UTF-8"');
+const db = await databasePromise;
 
 export function setupDatabase() {
   try {
@@ -20,6 +21,8 @@ export function setupDatabase() {
 }
 
 process.on("SIGINT", () => {
+  logger.log("APP", "closed.\n\n");
+  logger.log("SIGINT", "process successfully overturned.")
   db.close();
   process.exit();
 });
