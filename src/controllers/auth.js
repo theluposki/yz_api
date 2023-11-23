@@ -17,7 +17,7 @@ export const auth = async (req, res) => {
 
     res.cookie("token", result.token, {
       httpOnly: true,
-      secure: true,
+      secure: false,
       sameSite: "none",
     });
 

@@ -4,6 +4,7 @@ import { getOneByID } from "./getOneByID.js";
 import { update } from "./update.js";
 import { deleteC } from "./delete.js";
 import { updateAuthorizationC } from "./updateAuthorization.js";
+import { my } from "./my.js";
 
 export {
   add,
@@ -11,5 +12,6 @@ export {
   getOneByID,
   update,
   deleteC,
-  updateAuthorizationC
+  updateAuthorizationC,
+  my
 }

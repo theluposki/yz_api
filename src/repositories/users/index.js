@@ -4,6 +4,7 @@ import { getOneByIDRepo } from "./getOneByID.js";
 import { updateRepo } from "./update.js";
 import { deleteRepo } from "./delete.js";
 import { updateAuthorization } from "./updateAuthorization.js";
+import { myRepo } from "./my.js";
 
 export {
   addRepo,
@@ -11,5 +12,6 @@ export {
   getOneByIDRepo,
   updateRepo,
   deleteRepo,
-  updateAuthorization
+  updateAuthorization,
+  myRepo
 }

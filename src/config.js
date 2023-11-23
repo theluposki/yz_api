@@ -5,10 +5,7 @@ const app = {
 }
 
 const cors = {
-  origin:
-    process.env.NODE_ENV === "production"
-      ? process.env.CLIENT_URL
-      : "https://localhost:5173",
+  origin: "http://localhost:1420",
   methods: ["OPTIONS", "GET", "POST", "PUT","DELETE"],
   credentials: true,
 };
